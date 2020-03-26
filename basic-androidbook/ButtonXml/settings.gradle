@@ -1,0 +1,2 @@
+rootProject.name='ButtonXml'
+include ':app'
