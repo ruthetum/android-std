@@ -2,6 +2,7 @@ package com.example.database;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -68,6 +69,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button button4 = (Button) findViewById(R.id.button4);
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String tableName = editText2.getText().toString();
+                selectData(tableName);
+            }
+        });
+
     }
 
     public void openDatabase(String databaseName) {
@@ -85,7 +95,6 @@ public class MainActivity extends AppCompatActivity {
         if (database != null) {
             String sql = "create table " + tableName + "(_id integer PRIMARY KEY autoincrement, name text, age integer, mobile text)";
             database.execSQL(sql);
-
             println("테이블 생성됨");
         } else {
             println("먼저 데이터베이스를 오픈하세요.");
@@ -103,6 +112,26 @@ public class MainActivity extends AppCompatActivity {
             println("데이터 추가함");
         } else {
             println("먼저 데이터베이스를 오픈하세요.");
+        }
+    }
+
+    public void selectData(String tableName) {
+        println("selectData() 호출됨");
+
+        if (database != null) {
+            String sql = "select name, age, mobile from " + tableName;
+            Cursor cursor = database.rawQuery(sql, null);
+            println("조회된 데이터 개수 : " + cursor.getCount());
+
+            for (int i=0; i<cursor.getCount();i++) {
+                cursor.moveToNext();
+                String name = cursor.getString(0);
+                int age = cursor.getInt(1);
+                String mobile = cursor.getString(2);
+
+                println("#" + i + " -> " + name + ", " + age + ", " + mobile);
+            }
+            cursor.close();
         }
     }
 
