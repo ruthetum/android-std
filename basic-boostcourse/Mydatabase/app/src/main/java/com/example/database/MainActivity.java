@@ -13,8 +13,12 @@ public class MainActivity extends AppCompatActivity {
 
     EditText editText;
     EditText editText2;
+    EditText editText3;
+    EditText editText4;
+    EditText editText5;
+
     TextView textView;
-    TextView textView2;
+
     SQLiteDatabase database;
 
     @Override
@@ -43,6 +47,27 @@ public class MainActivity extends AppCompatActivity {
                 createTable(tableName);
             }
         });
+
+        editText3 = (EditText) findViewById(R.id.editText3);
+        editText4 = (EditText) findViewById(R.id.editText4);
+        editText5 = (EditText) findViewById(R.id.editText5);
+        Button button3 = (Button) findViewById(R.id.button3);
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String name = editText3.getText().toString().trim();
+                String ageStr = editText4.getText().toString().trim();
+                String mobile = editText5.getText().toString().trim();
+
+                int age = -1;
+                try {
+                    age = Integer.parseInt(ageStr);
+                } catch (Exception e) {}
+
+                insertData(name, age, mobile);
+            }
+        });
+
     }
 
     public void openDatabase(String databaseName) {
@@ -62,6 +87,20 @@ public class MainActivity extends AppCompatActivity {
             database.execSQL(sql);
 
             println("테이블 생성됨");
+        } else {
+            println("먼저 데이터베이스를 오픈하세요.");
+        }
+    }
+
+    public void insertData(String name, int age, String mobile) {
+        println("insertData() 호출됨");
+
+        if (database != null) {
+            String sql = "insert into customer(name, age, mobile) values(?, ?, ?)";
+            Object[] params = {name, age, mobile};
+            database.execSQL(sql, params);
+
+            println("데이터 추가함");
         } else {
             println("먼저 데이터베이스를 오픈하세요.");
         }
