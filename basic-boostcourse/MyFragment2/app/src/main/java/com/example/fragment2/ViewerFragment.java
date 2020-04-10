@@ -23,7 +23,7 @@ public class ViewerFragment extends Fragment {
 
         imageView = (ImageView) rootView.findViewById(R.id.imageView);
 
-        return super.onCreateView(inflater, container, savedInstanceState);
+        return rootView;
     }
 
     public void setImage(int index) {

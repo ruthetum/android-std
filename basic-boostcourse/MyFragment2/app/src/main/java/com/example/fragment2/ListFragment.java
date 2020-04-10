@@ -50,6 +50,6 @@ public class ListFragment extends Fragment {
             }
         });
 
-        return super.onCreateView(inflater, container, savedInstanceState);
+        return rootView;
     }
 }
