@@ -1,6 +1,7 @@
 package com.example.optionmenu;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -16,6 +17,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // 액션바 삭제 방법 2가지
+        // 1. values - styles.xml에서 DarkActionBar를 NoActionBar로 바꾸기
+        // 2. 1처럼 안 했을 경우 밑에 방법처럼
+//        ActionBar abar = getSupportActionBar();
+//        abar.hide();
+
     }
 
     @Override
