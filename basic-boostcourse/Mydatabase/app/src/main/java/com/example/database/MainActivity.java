@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         println("createTable() 호출됨");
 
         if (database != null) {
-            String sql = "create table " + tableName + "(_id integer PRIMARY KEY autoincrement, name text, age integer, mobile text)";
+            String sql = "create table [IF NOT EXISITS] " + tableName + "(_id integer PRIMARY KEY autoincrement, name text, age integer, mobile text)";
             database.execSQL(sql);
             println("테이블 생성됨");
         } else {
