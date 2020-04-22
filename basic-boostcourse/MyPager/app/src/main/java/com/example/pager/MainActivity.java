@@ -1,6 +1,7 @@
 package com.example.pager;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -8,17 +9,19 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-
+    ViewPager pager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ViewPager pager = (ViewPager) findViewById(R.id.pager);
+        pager = (ViewPager) findViewById(R.id.pager);
         pager.setOffscreenPageLimit(3);
 
         MoviePagerAdapter adapter = new MoviePagerAdapter(getSupportFragmentManager());
@@ -33,6 +36,15 @@ public class MainActivity extends AppCompatActivity {
         adapter.addItem(fragment3);
 
         pager.setAdapter(adapter);
+
+        Button button = (Button) findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 프래그먼트 2
+                pager.setCurrentItem(1);
+            }
+        });
 
 
     }
@@ -61,6 +73,12 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             return items.size();
+        }
+
+        @Nullable
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return "페이지 "+position;
         }
     }
 }
