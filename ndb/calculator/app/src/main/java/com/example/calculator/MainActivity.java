@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Button button2 = findViewById(R.id.button2);
-        button.setOnClickListener(new View.OnClickListener() {
+        button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 substratClick();
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Button button3 = findViewById(R.id.button3);
-        button.setOnClickListener(new View.OnClickListener() {
+        button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 multiplyClick();
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Button button4 = findViewById(R.id.button4);
-        button.setOnClickListener(new View.OnClickListener() {
+        button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 divideClick();
