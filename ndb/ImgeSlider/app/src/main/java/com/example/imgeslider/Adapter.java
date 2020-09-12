@@ -28,7 +28,7 @@ public class Adapter extends PagerAdapter {
 
     @Override
     public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
-        return views == ((LinearLayout) object);
+        return view == ((LinearLayout) object);
     }
 
     @Override
