@@ -6,7 +6,7 @@ export const register = async (req, res) => {
         body: { userID, userPW, userName, userAge }
     } = req;
 
-    var numUserAge = parseInt(userAge)
+    var numUserAge = parseInt(userAge);
 
     try {
         const newUser = await User.create({
@@ -22,11 +22,39 @@ export const register = async (req, res) => {
         });
     } catch (err) {
         console.log(err);
+        res.send({
+            "success" : "FAILED"
+        });
     }
 }
 
 export const login = async (req, res) => {
-    const userlist = await User.findAll({});
-    console.log(userlist);
-    res.json(userlist);
+    console.log("login 연결");
+    const {
+        body: { userID, userPW}
+    } = req;
+
+    try {
+        const checkUser = await User.findOne({
+            where: {
+                userID: userID
+            }
+        });
+        console.log(checkUser);
+
+        if (checkUser.userPW === userPW) {
+            res.send({
+                "success" : "OK"
+            });
+        } else {
+            res.send({
+                "success" : "FAILED"
+            });
+        }
+    } catch (err) {
+        console.log(err);
+        res.send({
+            "success" : "FAILED"
+        });
+    }
 }
