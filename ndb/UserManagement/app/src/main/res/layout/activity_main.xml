@@ -49,4 +49,11 @@
         android:layout_below="@id/textView4"
         android:text="TextView"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+    <Button
+        android:id="@+id/managementBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pwText"
+        android:text="관리" />
 </RelativeLayout>
