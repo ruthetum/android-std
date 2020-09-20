@@ -46,10 +46,55 @@ public class MainActivity extends AppCompatActivity {
         managementBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                RequestThread thread = new RequestThread();
+//                thread.start();
                 new BackgroundTask().execute();
             }
         });
     }
+
+//    class RequestThread extends Thread {
+//        public void run() {
+//            String result;
+//            String target = "http://10.0.2.2:3000/userlist";
+//            try {
+//                URL url = new URL(target);
+//                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+//                if (httpURLConnection != null) {
+//                    httpURLConnection.setUseCaches(false);
+//                    httpURLConnection.setAllowUserInteraction(false);
+//                    httpURLConnection.setRequestMethod("GET");
+//                    httpURLConnection.setConnectTimeout(5000);
+//
+//                    int responseCode = httpURLConnection.getResponseCode();
+//
+//                    if (responseCode == HttpURLConnection.HTTP_OK) {
+//                        BufferedReader bufferedReader = new BufferedReader((new InputStreamReader(httpURLConnection.getInputStream())));
+//                        StringBuilder stringBuilder = new StringBuilder();
+//                        String line = null;
+//
+//                        while(true) {
+//                            line = bufferedReader.readLine();
+//                            if (line == null) {
+//                                break;
+//                            }
+//                            stringBuilder.append(line);
+//                        }
+//                        bufferedReader.close();
+//                        httpURLConnection.disconnect();
+//                        result = stringBuilder.toString().trim();
+//
+//                        Intent intent = new Intent(MainActivity.this, ManagementActivity.class);
+//                        intent.putExtra("userList", result);
+//                        MainActivity.this.startActivity(intent);
+//                        System.out.println(result);
+//                    }
+//                }
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
 
     class BackgroundTask extends AsyncTask<Void, Void, String> {
         String target;
