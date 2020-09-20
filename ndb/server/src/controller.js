@@ -63,11 +63,15 @@ export const userlist = async (req, res) => {
     try {
         const userList = await User.findAll({});
         console.log(userList);
-        res.send(userList);
+        res.send({
+            "response" : userList
+        });
     } catch (err){
         const userList = [];
         console.log(err);
-        res.send(userList);
+        res.send({
+            "response" : userList
+        });
     }
     
 }
