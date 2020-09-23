@@ -1,5 +1,6 @@
 package com.example.usermanagement;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -7,7 +8,16 @@ import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -27,7 +37,7 @@ public class ManagementActivity extends AppCompatActivity {
         Intent intent = getIntent();
         listView = (ListView) findViewById(R.id.listView);
         userList = new ArrayList<>();
-        adapter = new UserListAdapter(getApplicationContext(), userList);
+        adapter = new UserListAdapter(getApplicationContext(), userList, this);
         listView.setAdapter(adapter);
 
         try {
@@ -42,7 +52,8 @@ public class ManagementActivity extends AppCompatActivity {
                 userName = object.getString("userName");
                 userAge = object.getString("userAge");
                 User user = new User(userID, userPW, userName, userAge);
-                userList.add(user);
+                if (!userID.equals("admin"))
+                    userList.add(user);
                 count++;
             }
         } catch (Exception e) {
