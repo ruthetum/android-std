@@ -75,3 +75,24 @@ export const userlist = async (req, res) => {
     }
     
 }
+
+export const deleteUser = async (req, res) => {
+    console.log("delete 연결");
+    const {
+        body: { userID }
+    } = req;
+
+    try {
+        await User.destroy({
+            where: { userID: userID }
+        });
+        res.send({
+            "success" : "OK"
+        });
+    } catch (err) {
+        console.log(err);
+        res.send({
+            "success" : "FAILED"
+        });
+    }
+}
