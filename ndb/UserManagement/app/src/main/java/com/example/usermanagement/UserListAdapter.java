@@ -21,11 +21,13 @@ public class UserListAdapter extends BaseAdapter {
     private Context context;
     private List<User> userList;
     private Activity parentActivity;
+    private List<User> saveList;
 
-    public UserListAdapter(Context context, List<User> userList, Activity parentActivity) {
+    public UserListAdapter(Context context, List<User> userList, Activity parentActivity, List<User> saveList) {
         this.context = context;
         this.userList = userList;
         this.parentActivity = parentActivity;
+        this.saveList = saveList;
     }
 
     @Override
@@ -70,6 +72,12 @@ public class UserListAdapter extends BaseAdapter {
                             String success = jsonResponse.getString("success");
                             if (success.equals("OK")) {
                                 userList.remove(position);
+                                for (int i=0; i<saveList.size(); i++) {
+                                    if (saveList.get(i).getUserID().equals(userID.getText().toString())) {
+                                        saveList.remove(i);
+                                        break;
+                                    }
+                                }
                                 notifyDataSetChanged();
                             }
                         } catch (Exception e) {
