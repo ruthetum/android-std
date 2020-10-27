@@ -1,0 +1,4 @@
+#Wed Oct 28 04:51:55 KST 2020
+base.0=C\:\\Users\\DELL\\Desktop\\gvr-android-sdk-v-1.190.0-\\samples\\sdk-video360\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+path.0=classes.dex
+renamed.0=classes.dex
